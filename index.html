@@ -79,7 +79,6 @@
     </style>
 </head>
 <body>
-
 <div class="container">
     <h2>Shefa Pure Juice</h2>
     <p class="subtitle">আপনার পছন্দের জুস প্রি-অর্ডার করুন</p>
@@ -108,7 +107,24 @@
             </select>
         </div>
 
-        <!-- কোয়ান্টিটি/পরিমাণ -->
+              <!-- নির্দিষ্ট ডেলিভারি এলাকার অপশন -->
+        <div class="form-group">
+            <label for="delivery-area">ডেলিভারির এলাকা / পয়েন্ট সিলেক্ট করুন:</label>
+            <select id="delivery-area" required>
+                <option value="" disabled selected>আপনার এলাকা বা পয়েন্ট বেছে নিন</option>
+                <option value="১. হাজারী টাওয়ার, দোহাজারী">১. হাজারী টাওয়ার, দোহাজারী</option>
+                <option value="২. মৌলবির দোকান, উত্তর সাতকানিয়া">২. মৌলবির দোকান, উত্তর সাতকানিয়া</option>
+                <option value="৩. বুরো বাংলাদেশ, দোহাজারী ব্রাঞ্চ">৩. বুরো বাংলাদেশ, দোহাজারী ব্রাঞ্চ</option>
+                <option value="৪. দেওয়ানহাট, চন্দনাইশ">৪. দেওয়ানহাট, চন্দনাইশ</option>
+                <option value="৫. ন্যাশনাল হসপিটাল, দোহাজারী শাখা">৫. ন্যাশনাল হসপিটাল, দোহাজারী শাখা</option>
+                <option value="৬. হাছনদন্ডী বহুমুখী উচ্চ বিদ্যালয়">৬. হাছনদন্ডী বহুমুখী উচ্চ বিদ্যালয়</option>
+                <option value="৭. খাগরিয়া খাদিম আলী চৌধুরী উচ্চ বিদ্যালয়">৭. খাগরিয়া খাদিম আলী চৌধুরী উচ্চ বিদ্যালয়</option>
+                <option value="৮. নুরু মার্কেট, খাগরিয়া">৮. নুরু মার্কেট, খাগরিয়া</option>
+                <option value="৯. বটতল ব্রিজ, মজিদার পাড়া">৯. বটতল ব্রিজ, মজিদার পাড়া</option>
+                <option value="১০. খাগরিয়া বহুমুখী উচ্চ বিদ্যালয়">১০. খাগরিয়া বহুমুখী উচ্চ বিদ্যালয়</option>
+            </select>
+        </div>
+  <!-- কোয়ান্টিটি/পরিমাণ -->
         <div class="form-group">
             <label for="quantity">কোয়ান্টিটি (কয় বোতল/পিস):</label>
             <input type="number" id="quantity" min="1" value="1" required>
