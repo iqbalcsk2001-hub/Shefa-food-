@@ -94,7 +94,189 @@
         <form id="juiceOrderForm">
             <!-- কাস্টমারদের নাম, মোবাইল ও অন্যান্য ফিল্ডগুলো এর নিচে থাকবে -->
 
-    
+    <!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shefa Food - প্রি-অর্ডার ও শপ</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 500px;
+            background: #ffffff;
+            margin: 0 auto;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #2b6cb0;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            font-weight: bold;
+            color: #2d3740;
+            margin-bottom: 8px;
+            display: block;
+        }
+        select, input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #cbd5e0;
+            box-sizing: border-box;
+        }
+        .product-box {
+            background: #f8f9fa;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #cbd5e0;
+        }
+        .item-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .item-row span {
+            font-size: 14px;
+            color: #2d3740;
+        }
+        .item-row input {
+            width: 70px;
+            padding: 6px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Shefa Food Pre-Order</h2>
+        
+        <!-- ক্যাটাগরি সিলেকশন -->
+        <div class="form-group">
+            <label for="categorySelect">ক্যাটাগরি বেছে নিন:</label>
+            <select id="categorySelect" onchange="toggleCategory()">
+                <option value="juice">২৫০ এম এল ফ্রেস জুস</option>
+                <option value="seasonal">সিজনাল ফলমূল</option>
+                <option value="dryfruits">প্রিমিয়াম ড্রাই ফ্রুটস (চায়না ইমপোর্ট)</option>
+            </select>
+        </div>
+
+        <!-- ১. জুস আইটেম সেকশন -->
+        <div id="juiceSection" class="form-group">
+            <label>জুসের ফ্লেভার সিলেক্ট করুন (২৫০ এম এল):</label>
+            <div class="product-box">
+                <div class="item-row">
+                    <span>আমের জুস</span>
+                    <input type="number" id="qty_mango" class="juice-qty" min="0" value="0" oninput="calculatePoints()" placeholder="০">
+                </div>
+                <div class="item-row">
+                    <span>কমলার জুস</span>
+                    <input type="number" id="qty_orange" class="juice-qty" min="0" value="0" oninput="calculatePoints()" placeholder="০">
+                </div>
+                <div class="item-row">
+                    <span>আঙুরের জুস</span>
+                    <input type="number" id="qty_grape" class="juice-qty" min="0" value="0" oninput="calculatePoints()" placeholder="০">
+                </div>
+                <div class="item-row">
+                    <span>কলার জুস / স্মুদি</span>
+                    <input type="number" id="qty_banana" class="juice-qty" min="0" value="0" oninput="calculatePoints()" placeholder="০">
+                </div>
+                <div class="item-row">
+                    <span>পেঁপের জুস</span>
+                    <input type="number" id="qty_papaya" class="juice-qty" min="0" value="0" oninput="calculatePoints()" placeholder="০">
+                </div>
+                <div class="item-row">
+                    <span>ফ্রেশ লেবুর জুস</span>
+                    <input type="number" id="qty_lemon" class="juice-qty" min="0" value="0" oninput="calculatePoints()" placeholder="০">
+                </div>
+                <div class="item-row">
+                    <span>পুদিনা-লেবুর রিফ্রেশিং জুস</span>
+                    <input type="number" id="qty_mint" class="juice-qty" min="0" value="0" oninput="calculatePoints()" placeholder="০">
+                </div>
+            </div>
+            <!-- পয়েন্ট ও ফ্রি জুস নোটিফিকেশন -->
+            <div style="background: #e6fffa; border: 1px solid #b2f5ea; padding: 10px; border-radius: 6px; margin-top: 10px; text-align: center;">
+                <p style="margin: 0; font-size: 13px; color: #234e52; font-weight: bold;" id="pointsText">মোট জুস: ০ টি | পয়েন্ট: ০ | ফ্রি জুস: ০ টি</p>
+            </div>
+        </div>
+
+        <!-- ২. সিজনাল ফল সেকশন -->
+        <div id="seasonalSection" class="form-group" style="display: none;">
+            <label>সিজনাল ফল সিলেক্ট করুন:</label>
+            <div class="product-box">
+                <div class="item-row">
+                    <span>ফ্রেশ আম (প্রতি কেজি)</span>
+                    <input type="number" min="0" value="0" placeholder="০">
+                </div>
+                <div class="item-row">
+                    <span>লিচু (প্রতি ১০০ পিস)</span>
+                    <input type="number" min="0" value="0" placeholder="০">
+                </div>
+            </div>
+        </div>
+
+        <!-- ৩. ড্রাই ফ্রুটস সেকশন -->
+        <div id="dryfruitsSection" class="form-group" style="display: none;">
+            <label>প্রিমিয়াম ড্রাই ফ্রুটস সিলেক্ট করুন:</label>
+            <div class="product-box">
+                <div class="item-row">
+                    <span>কাজুবাদাম / প্রিমিয়াম নাটস (২৫০ গ্রাম)</span>
+                    <input type="number" min="0" value="0" placeholder="০">
+                </div>
+                <div class="item-row">
+                    <span>কিশমিশ ও স্পেশাল ডেটস (২৫০ গ্রাম)</span>
+                    <input type="number" min="0" value="0" placeholder="০">
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function toggleCategory() {
+            let selectedVal = document.getElementById('categorySelect').value;
+            
+            document.getElementById('juiceSection').style.display = 'none';
+            document.getElementById('seasonalSection').style.display = 'none';
+            document.getElementById('dryfruitsSection').style.display = 'none';
+            
+            if(selectedVal === 'juice') {
+                document.getElementById('juiceSection').style.display = 'block';
+            } else if(selectedVal === 'seasonal') {
+                document.getElementById('seasonalSection').style.display = 'block';
+            } else if(selectedVal === 'dryfruits') {
+                document.getElementById('dryfruitsSection').style.display = 'block';
+            }
+        }
+
+        function calculatePoints() {
+            let inputs = document.querySelectorAll('.juice-qty');
+            let totalJuice = 0;
+            inputs.forEach(input => {
+                let val = parseInt(input.value) || 0;
+                if(val > 0) totalJuice += val;
+            });
+            let freeJuice = Math.floor(totalJuice / 10);
+            let pointsText = document.getElementById('pointsText');
+            pointsText.innerText = "মোট জুস: " + totalJuice + " টি | পয়েন্ট: " + totalJuice + " | ফ্রি জুস: " + freeJuice + " টি";
+        }
+    </script>
+</body>
+</html>
+
     <form id="juiceOrderForm">
         <!-- কাস্টমারের নাম -->
         <div class="form-group">
